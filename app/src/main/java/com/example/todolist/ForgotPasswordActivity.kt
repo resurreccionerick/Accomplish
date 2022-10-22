@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -27,7 +27,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val btnForgotPass = findViewById<Button>(R.id.btnForgotPass)
-        val txtForgotPassEmail = findViewById<EditText>(R.id.txtForgotPassEmail)
+        val txtForgotPassEmail = findViewById<TextInputEditText>(R.id.txtForgotPassEmail)
 
         btnForgotPass.setOnClickListener {
             if (txtForgotPassEmail.text.toString().isEmpty()) {
@@ -37,7 +37,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 auth.sendPasswordResetEmail(txtForgotPassEmail.text.toString())
                 Toast.makeText(this, "Check your email to change your password.", Toast.LENGTH_LONG)
                     .show()
-                txtForgotPassEmail.text.clear()
+                txtForgotPassEmail.text?.clear()
             }
         }
     }

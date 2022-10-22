@@ -7,39 +7,50 @@
     android:background="@color/background_color"
     tools:context=".LoginActivity">
 
-    <EditText
-        android:id="@+id/txtLoginEmail"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/LoginEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="12dp"
+        android:hint="Enter Email Address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtLoginEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <EditText
-        android:id="@+id/txtLoginPass"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/LoginPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="12dp"
+        android:hint="Enter Password"
+        app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLoginEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/LoginEmail">
+
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtLoginPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:inputType="textEmailAddress"
+            android:password="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
         android:id="@+id/imageView"
@@ -59,8 +70,8 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:text="SIGN IN"
-        app:layout_constraintEnd_toEndOf="@+id/txtLoginPass"
-        app:layout_constraintStart_toStartOf="@+id/txtLoginPass"
+        app:layout_constraintEnd_toEndOf="@+id/LoginPass"
+        app:layout_constraintStart_toStartOf="@+id/LoginPass"
         app:layout_constraintTop_toBottomOf="@+id/btnLoginForgetPass" />
 
     <TextView
@@ -86,8 +97,8 @@
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/txtLoginPass"
-        app:layout_constraintTop_toBottomOf="@+id/txtLoginPass" />
+        app:layout_constraintEnd_toEndOf="@+id/LoginPass"
+        app:layout_constraintTop_toBottomOf="@+id/LoginPass" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -97,22 +108,22 @@
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6">
 
-        <ImageButton
-            android:id="@+id/btnRegisterFB"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            app:srcCompat="@drawable/icons8_facebook_45px"
-            tools:layout_editor_absoluteX="128dp"
-            tools:layout_editor_absoluteY="626dp" />
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/btnSignUpFB"-->
+        <!--            android:layout_width="60dp"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:layout_margin="10dp"-->
+        <!--            app:srcCompat="@drawable/icons8_facebook_45px"-->
+        <!--            tools:layout_editor_absoluteX="128dp"-->
+        <!--            tools:layout_editor_absoluteY="626dp" />-->
 
         <ImageButton
-            android:id="@+id/btnRegisterGoogle"
+            android:id="@+id/btnSignUpGoogle"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="10dp"
             app:layout_constraintStart_toEndOf="@+id/imageButton"
-            app:srcCompat="@drawable/icons8_google_45px"
+            app:srcCompat="@drawable/icons8_google_50px_2"
             tools:layout_editor_absoluteY="626dp" />
     </LinearLayout>
 

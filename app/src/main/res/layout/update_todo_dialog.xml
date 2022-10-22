@@ -5,37 +5,37 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ToDoTitle"
+        android:id="@+id/TxtToDoTitle"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Enter Title"
+        android:hint="Enter New Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <!--this is the actual edit text which takes the input-->
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtToDoTitle"
+            android:id="@+id/updateTxtToDoTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/btnAdd"
+        android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Add"
+        android:text="Update"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/ToDoTitle"
-        app:layout_constraintStart_toStartOf="@+id/ToDoTitle"
-        app:layout_constraintTop_toBottomOf="@+id/ToDoTitle" />
+        app:layout_constraintEnd_toEndOf="@+id/TxtToDoTitle"
+        app:layout_constraintStart_toStartOf="@+id/TxtToDoTitle"
+        app:layout_constraintTop_toBottomOf="@+id/TxtToDoTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

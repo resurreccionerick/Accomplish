@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -38,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnRegister = findViewById<TextView>(R.id.btnRegisterHere)
-        val btnSignInGoogle = findViewById<ImageButton>(R.id.btnRegisterGoogle)
+        val btnSignInGoogle = findViewById<ImageButton>(R.id.btnSignUpGoogle)
         val btnLoginForgetPass = findViewById<TextView>(R.id.btnLoginForgetPass)
 
         btnLoginForgetPass.setOnClickListener {
