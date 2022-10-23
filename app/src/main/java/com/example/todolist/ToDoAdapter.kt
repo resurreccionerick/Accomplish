@@ -3,6 +3,7 @@ package com.example.todolist
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,14 +56,14 @@ class ToDoAdapter(private val toDoList: ArrayList<ToDoModel>, private val contex
                     "checked" to "true"
                 )
 
-                databaseReference.updateChildren(updateValues)
+                databaseReference.updateChildren(updateValues) //update the checked value into true
 
             } else {
                 val updateValues = mapOf(
                     "checked" to "false"
                 )
 
-                databaseReference.updateChildren(updateValues)
+                databaseReference.updateChildren(updateValues) //update the checked value into false
             }
 
             context.startActivity(
@@ -74,9 +75,16 @@ class ToDoAdapter(private val toDoList: ArrayList<ToDoModel>, private val contex
         })
 
 
-        holder.todoLayout.setOnLongClickListener {
+        holder.btnDownUpdateDelete.setOnClickListener {
+            holder.btnDownUpdateDelete.isVisible = false
+            holder.btnUpUpdateDelete.isVisible = true
             holder.updateDeleteLayout.isVisible = true
-            return@setOnLongClickListener true
+        }
+
+        holder.btnUpUpdateDelete.setOnClickListener {
+            holder.btnDownUpdateDelete.isVisible = true
+            holder.btnUpUpdateDelete.isVisible = false
+            holder.updateDeleteLayout.isVisible = false
         }
 
         holder.btnUpdate.setOnClickListener {
@@ -125,7 +133,7 @@ class ToDoAdapter(private val toDoList: ArrayList<ToDoModel>, private val contex
 
         holder.btnDelete.setOnClickListener {
             val builder = AlertDialog.Builder(context)
-            builder.setMessage("Are you sure you want to Delete?")
+            builder.setMessage("Are you sure you want to delete this\nTitle: " + curToDo.title + "?")
                 .setCancelable(false)
                 .setPositiveButton("Yes") { dialog, id ->
                     databaseReference.child(firebaseAuth.currentUser?.displayName.toString())
@@ -147,10 +155,6 @@ class ToDoAdapter(private val toDoList: ArrayList<ToDoModel>, private val contex
             alert.show()
         }
 
-        holder.btnCancel.setOnClickListener {
-            holder.updateDeleteLayout.isVisible = false
-        }
-
     }
 
     override fun getItemCount(): Int {
@@ -163,7 +167,7 @@ class ToDoAdapter(private val toDoList: ArrayList<ToDoModel>, private val contex
         val updateDeleteLayout: LinearLayout = itemView.findViewById(R.id.updateDeleteLayout)
         val btnDelete: ImageView = itemView.findViewById(R.id.btnDelete)
         val btnUpdate: ImageView = itemView.findViewById(R.id.btnEdit)
-        val btnCancel: TextView = itemView.findViewById(R.id.btnCancel)
-        val todoLayout: LinearLayout = itemView.findViewById(R.id.todoLayout)
+        val btnDownUpdateDelete: ImageButton = itemView.findViewById(R.id.btnDownUpdateDelete)
+        val btnUpUpdateDelete: ImageButton = itemView.findViewById(R.id.btnUpUpdateDelete)
     }
 }
