@@ -28,6 +28,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        supportActionBar?.hide() //hide actionbar
+
         auth = Firebase.auth
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -62,8 +64,8 @@ class LoginActivity : AppCompatActivity() {
                 )
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            finish();
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            finish()
                         } else {
                             Toast.makeText(
                                 baseContext, "User not found",
@@ -110,6 +112,7 @@ class LoginActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
+                finish()
                 val intent: Intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {

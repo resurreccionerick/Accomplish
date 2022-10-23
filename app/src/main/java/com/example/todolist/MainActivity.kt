@@ -1,8 +1,12 @@
 package com.example.todolist
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -33,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         fbAddNewToDo.setOnClickListener {
             AddNewToDoDialog(this).show() //show add to-do dialog
         }
-
     }
 
     private fun getUserData() {
@@ -55,7 +58,28 @@ class MainActivity : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) {
             }
-
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.nav_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_logout -> {
+
+                finish()
+                startActivity(Intent(this, SplashActivity::class.java))
+                firebaseAuth.signOut()
+
+//                var intent = Intent(this, LoginActivity::class.java)
+//                startActivity(intent)
+
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

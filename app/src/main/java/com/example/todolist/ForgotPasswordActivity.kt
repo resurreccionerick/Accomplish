@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -20,12 +21,11 @@ class ForgotPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)
 
+        supportActionBar?.hide() //hide actionbar
+
         auth = Firebase.auth
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_forgotPass)
-        setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
+        val btnForgotPassBack = findViewById<MaterialButton>(R.id.btnForgotPassBack)
         val btnForgotPass = findViewById<Button>(R.id.btnForgotPass)
         val txtForgotPassEmail = findViewById<TextInputEditText>(R.id.txtForgotPassEmail)
 
@@ -40,18 +40,15 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 txtForgotPassEmail.text?.clear()
             }
         }
-    }
 
-    override fun onBackPressed() {
-        finish();
-        startActivity(Intent(this@ForgotPasswordActivity, LoginActivity::class.java))
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean { //this is for back button
-        if (item.itemId == android.R.id.home) {
+        btnForgotPassBack.setOnClickListener{
             finish();
             startActivity(Intent(this@ForgotPasswordActivity, LoginActivity::class.java))
         }
-        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        finish()
+        startActivity(Intent(this@ForgotPasswordActivity, LoginActivity::class.java))
     }
 }

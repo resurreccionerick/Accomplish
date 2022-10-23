@@ -7,11 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -22,22 +21,22 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar_register)
-        setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.hide() //hide actionbar
 
         auth = Firebase.auth
 
         val email = findViewById<EditText>(R.id.txtRegisterEmail)
         val pass = findViewById<EditText>(R.id.txtRegisterPass)
         val btnRegister = findViewById<Button>(R.id.btnSignup)
+        val btnRegisterBack = findViewById<MaterialButton>(R.id.btnRegisterBack)
 
         btnRegister.setOnClickListener {
             if (txtRegisterEmail.text.toString().isEmpty() || txtRegisterPass.text.toString()
-                    .isEmpty()){
+                    .isEmpty()
+            ) {
                 Toast.makeText(baseContext, "Please enter all fields.", Toast.LENGTH_SHORT)
                     .show()
-            } else if (txtRegisterPass.text.length < 6) {
+            } else if (txtRegisterPass.text!!.length < 6) {
                 Toast.makeText(baseContext, "Please enter 6 digit password.", Toast.LENGTH_SHORT)
                     .show()
             } else {
@@ -58,6 +57,11 @@ class RegisterActivity : AppCompatActivity() {
                     }
             }
         }
+
+        btnRegisterBack.setOnClickListener {
+            finish();
+            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+        }
     }
 
     override fun onBackPressed() {
@@ -65,11 +69,4 @@ class RegisterActivity : AppCompatActivity() {
         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean { //this is for back button
-        if (item.itemId == android.R.id.home) {
-            finish();
-            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }

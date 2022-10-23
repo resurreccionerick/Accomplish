@@ -8,13 +8,11 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
-
 
 class AddNewToDoDialog(context: Context) : Dialog(context) {
     init {
@@ -28,7 +26,6 @@ class AddNewToDoDialog(context: Context) : Dialog(context) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.add_todo_dialog)
-
 
         val txtToDoTitle: EditText = findViewById(R.id.txtToDoTitle)
         val btnAdd: Button = findViewById(R.id.btnAdd)

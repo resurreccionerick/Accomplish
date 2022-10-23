@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    tools:context=".RegisterActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,47 +23,57 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Register"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:titleTextColor="@color/white" />
 
 
-    <EditText
-        android:id="@+id/txtRegisterEmail"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/RegisterEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="12dp"
+        android:hint="Enter Email Address"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-    <EditText
-        android:id="@+id/txtRegisterPass"
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRegisterEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/RegisterPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="12dp"
+        android:hint="Enter Password"
+        app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtRegisterEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/RegisterEmail">
+
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRegisterPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:inputType="textEmailAddress"
+            android:password="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnSignup"
@@ -73,8 +83,20 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:text="SIGN UP"
-        app:layout_constraintEnd_toEndOf="@+id/txtRegisterPass"
-        app:layout_constraintStart_toStartOf="@+id/txtRegisterPass"
-        app:layout_constraintTop_toBottomOf="@+id/txtRegisterPass" />
+        app:layout_constraintEnd_toEndOf="@+id/RegisterPass"
+        app:layout_constraintStart_toStartOf="@+id/RegisterPass"
+        app:layout_constraintTop_toBottomOf="@+id/RegisterPass" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegisterBack"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Back"
+        app:icon="@drawable/ic_baseline_arrow_back_24"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

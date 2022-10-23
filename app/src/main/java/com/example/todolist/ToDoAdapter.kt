@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.update_todo_dialog.view.*
 
+
 class ToDoAdapter(private val toDoList: ArrayList<ToDoModel>, private val context: Context) :
     RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>() {
 
@@ -34,11 +35,44 @@ class ToDoAdapter(private val toDoList: ArrayList<ToDoModel>, private val contex
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
         firebaseAuth = Firebase.auth
 
+        val key = curToDo.id //unique id
+        val name = firebaseAuth.currentUser?.displayName
+        val checked = curToDo.checked
+
         holder.title.text = curToDo.title
 
         if (curToDo.checked == "true") {
             holder.checkBox.isChecked = true
         }
+
+        holder.checkBox.setOnClickListener(View.OnClickListener { view ->
+            databaseReference =
+                FirebaseDatabase.getInstance().getReference("Users").child(name.toString())
+                    .child(key.toString())
+
+            if ((view as CompoundButton).isChecked) {
+                val updateValues = mapOf(
+                    "checked" to "true"
+                )
+
+                databaseReference.updateChildren(updateValues)
+
+            } else {
+                val updateValues = mapOf(
+                    "checked" to "false"
+                )
+
+                databaseReference.updateChildren(updateValues)
+            }
+
+            context.startActivity(
+                Intent(
+                    context,
+                    MainActivity::class.java
+                )
+            ) //restart the activity
+        })
+
 
         holder.todoLayout.setOnLongClickListener {
             holder.updateDeleteLayout.isVisible = true
@@ -61,15 +95,8 @@ class ToDoAdapter(private val toDoList: ArrayList<ToDoModel>, private val contex
             updateDialog.btnUpdate.setOnClickListener {
                 mAlertDialog.dismiss()
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("Users")
-                firebaseAuth = Firebase.auth
-
                 val updateTxtToDoTitle: EditText =
                     updateDialog.findViewById(R.id.updateTxtToDoTitle)
-
-                val key = curToDo.id //unique id
-                val name = firebaseAuth.currentUser?.displayName
-                val checked = curToDo.checked
 
                 val updateValues = mapOf(
                     "id" to key,
@@ -120,7 +147,7 @@ class ToDoAdapter(private val toDoList: ArrayList<ToDoModel>, private val contex
             alert.show()
         }
 
-        holder.btnCancel.setOnClickListener{
+        holder.btnCancel.setOnClickListener {
             holder.updateDeleteLayout.isVisible = false
         }
 
@@ -136,7 +163,7 @@ class ToDoAdapter(private val toDoList: ArrayList<ToDoModel>, private val contex
         val updateDeleteLayout: LinearLayout = itemView.findViewById(R.id.updateDeleteLayout)
         val btnDelete: ImageView = itemView.findViewById(R.id.btnDelete)
         val btnUpdate: ImageView = itemView.findViewById(R.id.btnEdit)
-        val btnCancel : TextView = itemView.findViewById(R.id.btnCancel)
+        val btnCancel: TextView = itemView.findViewById(R.id.btnCancel)
         val todoLayout: LinearLayout = itemView.findViewById(R.id.todoLayout)
     }
 }
